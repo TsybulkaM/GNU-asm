@@ -1,15 +1,15 @@
 .section .data
 msg:
-    .asciz "HeLLo WoRLd"     # строка, заканчивающаяся 0
+    .asciz "HeLLo WoRLd"
 
 .section .text
 .global _start
 _start:
-    movq $0, %rcx            # индекс в строке
+    movq $0, %rcx
 
 loop_start:
-    movb msg(%rcx), %al       # загружаем символ
-    cmpb $0, %al              # если конец строки
+    movb msg(%rcx), %al
+    cmpb $0, %al
     je print
  
     cmpb $'A', %al
@@ -18,20 +18,20 @@ loop_start:
     cmpb $'Z', %al 
     jg next_char
 
-    addb $32, %al             # преобразуем в строчную
-    movb %al, msg(%rcx)       # записываем обратно
+    addb $32, %al
+    movb %al, msg(%rcx)
 
 next_char:
-    incq %rcx                 # индекс++
+    incq %rcx
     jmp loop_start
 
 print:
-    movq $1, %rax             # номер системного вызова sys_write = 4
-    movq $1, %rdi             # дескриптор stdout
-    lea msg, %rsi      	  # адрес строки msg
-    movq $11, %rdx            # длина строки (11 символов)
+    movq $1, %rax
+    movq $1, %rdi
+    lea msg, %rsi
+    movq $11, %rdx
     syscall
 
-    movq $60, %rax             # номер системного вызова sys_exit = 1
-    xorq %rdi, %rdi           # код возврата = 0
+    movq $60, %rax
+    xorq %rdi, %rdi
     syscall
