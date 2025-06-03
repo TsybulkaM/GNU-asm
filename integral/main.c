@@ -2,6 +2,10 @@
 #include <stdint.h>
 #include <math.h>
 
+double _antiderivative(double x) {
+    return (x*sqrt((1+x*x)))/2 + log(fabs(sqrt(1+x*x)+x))/2;
+}
+
 double antiderivative(double x)
 {
     double result;
