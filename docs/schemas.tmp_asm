@@ -1,0 +1,73 @@
+section .text
+	globl _start
+	
+_start:
+	; Realization of for, do_while, and, or, xor
+
+; === for(while) ===
+
+while:
+	cmp <cond2run>
+	jne while_exit
+	<actions>
+	jmp while
+
+while_exit:
+	<other_code>
+
+; === do_while ===
+
+do_while:
+	<actions>
+	cmp <cond2run>
+	je do_while
+	
+; === and ===
+
+label_and:
+	cmp <cond1>
+	jne and_exit
+	cmp <cond2>
+	jne and_exit
+	<actions>
+	
+and_exit:
+	<other_code>
+	
+; === or ===
+
+label_or:
+	cmp <cond1>
+	je or_exec
+	cmp <cond2>
+	jne or_exit
+	
+or_exec:
+	<actions>
+	
+or_exit:
+	<other_code>
+	
+; === xor ===
+
+label_xor:
+    cmp <cond1>
+    je .cond1_is_true
+
+.cond1_is_false:
+    cmp <cond2>
+    je xor_exec
+    jmp xor_exit
+
+.cond1_is_true:
+    cmp <cond2>
+    jne xor_exec
+    jmp xor_exit
+
+xor_exec:
+    <actions>
+
+xor_exit:
+    <other_code>
+	
+; ========
