@@ -8,6 +8,12 @@
 # If you have a standard name for your executable, add it:
 # my_program
 # a.out (standard GCC output name)
+# Main exec files
+*/main
+main
+# Test exec files
+*/test
+test
 *.out
 # For Windows (if cross-compiling or developing on Windows)
 *.exe
