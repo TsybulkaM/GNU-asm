@@ -1,6 +1,6 @@
 .data
 	.set ARRAY_SIZE, 8
-	
+
 .bss
 	fib_array: .space	4 * ARRAY_SIZE
 
