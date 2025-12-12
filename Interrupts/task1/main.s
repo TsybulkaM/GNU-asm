@@ -11,7 +11,7 @@
 _start:
 	mov $4, %eax
 	mov $1, %ebx
-	mov $string, %ecx
+	lea string, %ecx #mov $string, %ecx
 	mov $string_size, %edx
 	int $0x80
 
